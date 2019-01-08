@@ -8,7 +8,7 @@ import { fetchHouses } from '../../thunks/fetchHouses'
 import CardContainer from '../CardContainer/CardContainer'
 import { Card } from '../../components/Card/Card'
 
-class App extends Component {
+export class App extends Component {
 
   async componentDidMount() {
     const url = 'http://localhost:3001/api/v1/houses'
@@ -45,13 +45,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  houses: state.houses,
+export const mapStateToProps = state => ({
   error: state.error,
   isLoading: state.isLoading
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   fetchHouses: (url) => dispatch(fetchHouses(url))
 })
 
