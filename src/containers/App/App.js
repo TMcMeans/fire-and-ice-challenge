@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import wolf from './wolf.gif';
 import './App.css';
 import { connect } from 'react-redux'
 import { fetchHouses } from '../../thunks/fetchHouses'
 
-import { CardContainer } from '../CardContainer/CardContainer'
+import CardContainer from '../CardContainer/CardContainer'
+import { Card } from '../../components/Card/Card'
 
 class App extends Component {
 
@@ -14,6 +16,14 @@ class App extends Component {
   }
 
   render() {
+    const { isLoading } = this.props
+    let display;
+    if (isLoading) {
+      display = <img src={wolf} alt="wolf-gif"></img>
+    } else {
+      display = <CardContainer />
+    }
+
     return (
       <div className='App'>
         <div className='App-header'>
@@ -21,21 +31,21 @@ class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
-          <CardContainer />
+          {display}
         </div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = state => ({
-//   houses: state.houses,
-//   error: state.error,
-//   isLoading: state.isLoading
-// })
+const mapStateToProps = state => ({
+  houses: state.houses,
+  error: state.error,
+  isLoading: state.isLoading
+})
 
 const mapDispatchToProps = dispatch => ({
   fetchHouses: (url) => dispatch(fetchHouses(url))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
