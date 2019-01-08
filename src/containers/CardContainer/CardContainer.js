@@ -1,15 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 
-class CardContainer extends Component {
+import { Card } from '../../components/Card/Card'
 
+export const CardContainer = ({ houses }) => {
 
-  render() {
-    return (
-      <div className="card-container">
-        <h1>HOUSES</h1>
-      </div>
-    )
-  }
+  const houseCards = houses.map((house, i) => <Card {...house} key={i + Date.now()} />)
+
+  return (
+    <div className="card-container">
+      {houseCards}
+    </div>
+  )
 }
 
-export default CardContainer;
+export const mapStateToProps = state => ({
+  houses: state.houses
+})
+
+export default connect(mapStateToProps)(CardContainer);
