@@ -1,4 +1,4 @@
-const errorReducer = (state = '', action) {
+const errorReducer = (state = '', action) => {
   switch (action.type) {
     case 'HAS_ERRORED':
       return action.message
@@ -7,4 +7,4 @@ const errorReducer = (state = '', action) {
   }
 }
 
-export const errorReducer;
+export default errorReducer

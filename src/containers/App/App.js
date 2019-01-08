@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux'
+import { fetchHouses } from '../../thunks/fetchHouses'
+
+import CardContainer from '../CardContainer/CardContainer'
 
 class App extends Component {
-
   render() {
     return (
       <div className='App'>
@@ -12,10 +15,21 @@ class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
+          <CardContainer />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  houses: state.houses,
+  error: state.error,
+  isLoading: state.isLoading
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchHouses: (url) => dispatch(fetchHouses(url))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

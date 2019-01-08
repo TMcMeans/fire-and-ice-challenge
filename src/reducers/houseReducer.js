@@ -1,4 +1,4 @@
-const houseReducer = (state = [], action) {
+const houseReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_HOUSES':
       return action.houses

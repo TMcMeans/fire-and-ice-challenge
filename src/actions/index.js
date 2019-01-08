@@ -8,7 +8,7 @@ export const hasErrored = (message) => ({
   message
 })
 
-export const isLOADING = (boolean) => ({
+export const isLoading = (boolean) => ({
   type: 'IS_LOADING',
   isLoading: boolean
 })
