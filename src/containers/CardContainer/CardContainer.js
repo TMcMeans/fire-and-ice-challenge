@@ -1,15 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class CardContainer extends Component {
+export const CardContainer = () => {
 
-
-  render() {
-    return (
-      <div className="card-container">
-        <h1>HOUSES</h1>
-      </div>
-    )
-  }
+  return (
+    <div className="card-container">
+      <h1>HOUSES</h1>
+    </div>
+  )
 }
-
-export default CardContainer;

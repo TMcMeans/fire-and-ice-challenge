@@ -4,9 +4,15 @@ import './App.css';
 import { connect } from 'react-redux'
 import { fetchHouses } from '../../thunks/fetchHouses'
 
-import CardContainer from '../CardContainer/CardContainer'
+import { CardContainer } from '../CardContainer/CardContainer'
 
 class App extends Component {
+
+  async componentDidMount() {
+    const url = 'http://localhost:3001/api/v1/houses'
+    await this.props.fetchHouses(url)
+  }
+
   render() {
     return (
       <div className='App'>
@@ -22,14 +28,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  houses: state.houses,
-  error: state.error,
-  isLoading: state.isLoading
-})
+// const mapStateToProps = state => ({
+//   houses: state.houses,
+//   error: state.error,
+//   isLoading: state.isLoading
+// })
 
 const mapDispatchToProps = dispatch => ({
   fetchHouses: (url) => dispatch(fetchHouses(url))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
