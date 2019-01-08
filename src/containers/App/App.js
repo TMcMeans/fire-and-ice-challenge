@@ -16,25 +16,32 @@ class App extends Component {
   }
 
   render() {
-    const { isLoading } = this.props
+    const { isLoading, error } = this.props
     let display;
+
     if (isLoading) {
       display = <img src={wolf} alt="wolf-gif"></img>
     } else {
       display = <CardContainer />
     }
 
-    return (
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h2>Welcome to Westeros</h2>
+    if (error) {
+      return (
+        <h1>{error}</h1>
+      )
+    } else {
+      return (
+        <div className='App'>
+          <div className='App-header'>
+            <img src={logo} className='App-logo' alt='logo' />
+            <h2>Welcome to Westeros</h2>
+          </div>
+          <div className='Display-info'>
+            {display}
+          </div>
         </div>
-        <div className='Display-info'>
-          {display}
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
